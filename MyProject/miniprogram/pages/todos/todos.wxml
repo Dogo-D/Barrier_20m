@@ -28,15 +28,18 @@
     <view class="filter-bar">
       <view 
         class="filter-item {{filter === 'all' ? 'active' : ''}}" 
-        bindtap="setFilter('all')"
+        bindtap="handleFilter"
+        data-filter="all"
       >全部</view>
       <view 
         class="filter-item {{filter === 'active' ? 'active' : ''}}" 
-        bindtap="setFilter('active')"
+        bindtap="handleFilter"
+        data-filter="active"
       >待完成</view>
       <view 
         class="filter-item {{filter === 'completed' ? 'active' : ''}}" 
-        bindtap="setFilter('completed')"
+        bindtap="handleFilter"
+        data-filter="completed"
       >已完成</view>
     </view>
 
@@ -71,7 +74,7 @@
   </view>
 
   <view class="modal-overlay" wx:if="{{showModal}}" bindtap="closeModal">
-    <view class="modal-content" bindtap.stop>
+    <view class="modal-content" catchtap>
       <view class="modal-header">
         <text class="modal-title">{{editingTodo ? '编辑待办' : '添加待办'}}</text>
         <view class="modal-close" bindtap="closeModal">×</view>

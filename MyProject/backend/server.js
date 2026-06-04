@@ -20,7 +20,7 @@ const db = new sqlite3.Database('./todo.db', (err) => {
   }
 })
 
-function initDatabase() {
+async function initDatabase() {
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
@@ -41,6 +41,42 @@ function initDatabase() {
       FOREIGN KEY (user_id) REFERENCES users(id)
     )
   `)
+
+  await createTestUser()
+}
+
+async function createTestUser() {
+  const testUsername = 'abcd'
+  const testPassword = '1234'
+  
+  db.get('SELECT * FROM users WHERE username = ?', [testUsername], async (err, user) => {
+    if (err) {
+      console.error('检查测试用户失败:', err)
+      return
+    }
+    
+    if (!user) {
+      try {
+        const hashedPassword = await bcrypt.hash(testPassword, 10)
+        const userId = generateId()
+        
+        db.run('INSERT INTO users (id, username, password) VALUES (?, ?, ?)',
+          [userId, testUsername, hashedPassword],
+          function(err) {
+            if (err) {
+              console.error('创建测试用户失败:', err)
+            } else {
+              console.log('测试用户创建成功: username=abcd, password=1234')
+            }
+          }
+        )
+      } catch (err) {
+        console.error('创建测试用户失败:', err)
+      }
+    } else {
+      console.log('测试用户已存在')
+    }
+  })
 }
 
 function generateId() {

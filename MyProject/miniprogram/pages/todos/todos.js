@@ -55,6 +55,11 @@ Page({
     this.applyFilter()
   },
 
+  handleFilter: function (e) {
+    const filter = e.currentTarget.dataset.filter
+    this.setFilter(filter)
+  },
+
   applyFilter: function () {
     const { todos, filter } = this.data
     let filtered = todos
