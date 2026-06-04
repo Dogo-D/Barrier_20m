@@ -1,0 +1,102 @@
+<view class="container">
+  <view class="header">
+    <view class="user-info">
+      <text class="username">{{user && user.username ? user.username : '未登录'}}</text>
+      <view class="logout-btn" bindtap="handleLogout" wx:if="{{user}}">退出登录</view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!user}}">
+    <view class="empty-icon">🔒</view>
+    <text class="empty-title">请先登录</text>
+    <text class="empty-desc">登录后才能管理您的待办事项</text>
+    <view class="btn-primary" bindtap="goToLogin">立即登录</view>
+  </view>
+
+  <view wx:else>
+    <view class="add-section">
+      <input 
+        class="add-input" 
+        placeholder="添加新的待办..." 
+        value="{{newTodoContent}}"
+        bindinput="onNewTodoInput"
+        bindconfirm="handleAddTodo"
+      />
+      <view class="add-btn" bindtap="handleAddTodo">+</view>
+    </view>
+
+    <view class="filter-bar">
+      <view 
+        class="filter-item {{filter === 'all' ? 'active' : ''}}" 
+        bindtap="setFilter('all')"
+      >全部</view>
+      <view 
+        class="filter-item {{filter === 'active' ? 'active' : ''}}" 
+        bindtap="setFilter('active')"
+      >待完成</view>
+      <view 
+        class="filter-item {{filter === 'completed' ? 'active' : ''}}" 
+        bindtap="setFilter('completed')"
+      >已完成</view>
+    </view>
+
+    <view class="todo-list">
+      <view 
+        class="todo-item card" 
+        wx:for="{{filteredTodos}}" 
+        wx:key="id"
+        bindtap="toggleTodo"
+        data-id="{{item.id}}"
+      >
+        <view class="todo-checkbox {{item.completed ? 'checked' : ''}}">
+          <text wx:if="{{item.completed}}">✓</text>
+        </view>
+        <view class="todo-content">
+          <text class="{{item.completed ? 'completed' : ''}}">{{item.content}}</text>
+          <text class="todo-time" wx:if="{{item.reminderTime}}">
+            🕐 {{formatTime(item.reminderTime)}}
+          </text>
+        </view>
+        <view class="todo-actions">
+          <view class="action-btn edit" catchtap="handleEdit" data-id="{{item.id}}">编辑</view>
+          <view class="action-btn delete" catchtap="handleDelete" data-id="{{item.id}}">删除</view>
+        </view>
+      </view>
+
+      <view class="empty-list" wx:if="{{filteredTodos.length === 0}}">
+        <view class="empty-icon">📋</view>
+        <text class="empty-desc">暂无待办事项</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showModal}}" bindtap="closeModal">
+    <view class="modal-content" bindtap.stop>
+      <view class="modal-header">
+        <text class="modal-title">{{editingTodo ? '编辑待办' : '添加待办'}}</text>
+        <view class="modal-close" bindtap="closeModal">×</view>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">待办内容</text>
+          <input class="form-input" placeholder="请输入待办内容" value="{{modalContent}}" bindinput="onModalContentInput" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">设置提醒</text>
+          <picker mode="date" value="{{reminderDate}}" bindchange="onDateChange">
+            <view class="picker-view">{{reminderDate || '选择日期'}}</view>
+          </picker>
+        </view>
+        <view class="form-item">
+          <picker mode="time" value="{{reminderTime}}" bindchange="onTimeChange">
+            <view class="picker-view">{{reminderTime || '选择时间'}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-secondary" bindtap="closeModal">取消</view>
+        <view class="btn-primary" bindtap="saveTodo">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,247 @@
+.header {
+  padding: 20rpx 0;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.username {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.logout-btn {
+  font-size: 28rpx;
+  color: #f44336;
+  padding: 10rpx 20rpx;
+  border: 2rpx solid #f44336;
+  border-radius: 20rpx;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.empty-desc {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.add-section {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.add-input {
+  flex: 1;
+  height: 80rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+}
+
+.add-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.filter-item {
+  flex: 1;
+  padding: 20rpx;
+  text-align: center;
+  background-color: white;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #666;
+  border: 2rpx solid transparent;
+}
+
+.filter-item.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.todo-list {
+  margin-top: 20rpx;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx;
+}
+
+.todo-checkbox {
+  width: 44rpx;
+  height: 44rpx;
+  border: 3rpx solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.todo-checkbox.checked {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+  font-size: 24rpx;
+}
+
+.todo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.todo-content text {
+  font-size: 30rpx;
+}
+
+.todo-content .completed {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-time {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.action-btn {
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 6rpx;
+}
+
+.action-btn.edit {
+  background-color: #2196F3;
+  color: white;
+}
+
+.action-btn.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.empty-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+}
+
+.empty-list .empty-icon {
+  font-size: 80rpx;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 600rpx;
+  background-color: white;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.modal-title {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.modal-close {
+  font-size: 48rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 30rpx;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 20rpx;
+  padding: 30rpx;
+  border-top: 2rpx solid #eee;
+}
+
+.modal-footer .btn-secondary,
+.modal-footer .btn-primary {
+  flex: 1;
+  margin-top: 0;
+}
+
+.picker-view {
+  height: 80rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  color: #333;
+}

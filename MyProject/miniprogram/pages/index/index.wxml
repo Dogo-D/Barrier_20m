@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="logo-section">
+    <view class="logo">📝</view>
+    <text class="title">待办清单</text>
+    <text class="subtitle">Todo List</text>
+  </view>
+
+  <view class="card" wx:if="{{isLoginMode}}">
+    <view class="form-item">
+      <text class="form-label">用户名</text>
+      <input class="form-input" placeholder="请输入用户名" bindinput="onUsernameInput" value="{{username}}" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">密码</text>
+      <input class="form-input" type="password" placeholder="请输入密码" bindinput="onPasswordInput" value="{{password}}" />
+    </view>
+    <view class="btn-primary" bindtap="handleLogin">登录</view>
+    <view class="text-center mt-20">
+      <text class="text-muted" bindtap="switchMode">还没有账号？立即注册</text>
+    </view>
+  </view>
+
+  <view class="card" wx:else>
+    <view class="form-item">
+      <text class="form-label">用户名</text>
+      <input class="form-input" placeholder="请输入用户名" bindinput="onUsernameInput" value="{{username}}" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">密码</text>
+      <input class="form-input" type="password" placeholder="请输入密码" bindinput="onPasswordInput" value="{{password}}" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">确认密码</text>
+      <input class="form-input" type="password" placeholder="请再次输入密码" bindinput="onConfirmPasswordInput" value="{{confirmPassword}}" />
+    </view>
+    <view class="btn-primary" bindtap="handleRegister">注册</view>
+    <view class="text-center mt-20">
+      <text class="text-muted" bindtap="switchMode">已有账号？立即登录</text>
+    </view>
+  </view>
+</view>
